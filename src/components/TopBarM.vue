@@ -1,11 +1,14 @@
 <template>
-  <header class="topBar">
-    <div class="content">
+  <header class="topBarM">
+    <div class="contentM">
       <div>
         <div><img class="logo" @click="get_Home" src="../assets/Group-2193.svg" /></div>
       </div>
       <div>
-      <nav>
+        <div><img class="menu_bar" @click="get_menu" src="../assets/菜单.svg" /></div>
+      </div>
+    </div>
+      <div class="list">
         <ul class="menu">
           <li>
             <div @click="get_Product">Product</div>
@@ -95,38 +98,39 @@
               </div>
             </ul>
           </li>
-          <li>
-            <div class="button">
-              <div class="text_button">Let's Talk</div>
-            </div>
-          </li>
         </ul>
-      </nav>
-    </div>
-    </div>
+      </div>
   </header>
 </template>
 
 
 <script>
 export default {
-  /* mounted() {
-    window.addEventListener('scroll',this.handleScroll)
-  }, */
+  mounted() {
+    window.addEventListener('scroll',this.handleScroll);
+    let video = document.querySelector('video');
+    video.play();
+  },
   methods: {
-    /* handleScroll () {
+    handleScroll () {
       let scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
-      if(scrollTop > window.innerHeight*0.1 + 53){
+      if(scrollTop > 53){
         document.querySelector('.topBar').style.position='fixed';
         document.querySelector('.topBar').style.top='0px';
         document.querySelector('.content').style.backgroundColor='#202C36';
+        document.querySelector('.topBarM').style.position='fixed';
+        document.querySelector('.topBarM').style.top='0px';
+        document.querySelector('.contentM').style.backgroundColor='#202C36';
       };
-      if(scrollTop <= window.innerHeight*0.1 + 53){
+      if(scrollTop <= 53){
         document.querySelector('.topBar').style.position='absolute';
-        document.querySelector('.topBar').style.top='10%';
+        document.querySelector('.topBar').style.top='0';
         document.querySelector('.content').style.backgroundColor='transparent';
+        document.querySelector('.topBarM').style.position='absolute';
+        document.querySelector('.topBarM').style.top='0';
+        document.querySelector('.contentM').style.backgroundColor='transparent';
       }
-    }, */
+    },
     get_Home(){
       this.$router.push({
         path:"/"
@@ -151,41 +155,67 @@ export default {
       this.$router.push({
         path:"/case-studies"
       });
+    },
+    get_menu() {
+        let a=document.querySelector('.list').style.display;
+        console.log(a);
+        if(a==''||a=='none'){
+        document.querySelector('.list').style.display='block';
+        document.querySelector('.list').style.position='absolute';
+        document.querySelector('.list').style.top='60';
+        }
+        else {
+          document.querySelector('.list').style.display='none'
+        }
     }
   }
 }
 </script>
 
 <style scoped>
-.topBar {
+.topBarM {
   position:absolute;
-  top: 0;
+  top:0;
   background-color: transparent;
   z-index: 5;
   width: 100%;
-  }
-.content {
+  margin-bottom: 30px;
+}
+.contentM {
   line-height: 24px;
-  padding: 1rem 2rem;
+  /* padding-left:5%;
+  padding-right:5%; */
+  padding: 1% 5%;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 .logo {
-  width: 10.3vw;
+  width: 35vw;
   cursor: pointer;
+}
+.menu_bar {
+  width: 8.3vw;
+  cursor: pointer;
+  background-color: #52DE97;
+}
+.list {
+  display: none;
+  width: 100%;
 }
 nav {
   width:100%;
-  padding-right: 50px;
 }
 .menu {
   display: flex;
+  width:100%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #202C36;
 }
 .menu li {
   display: flex;
-  flex: none;
   padding: 5px 10px 0px 10px;
-  align-items: center;
   position: relative;
 }
 .menu div {
@@ -193,7 +223,7 @@ nav {
   font-family: "Poppins";
   font-weight: 600;
   color: #fff;
-  font-size: 0.5rem;
+  font-size: 1.5rem;
 }
 .menu .text {
   cursor:text;
@@ -208,44 +238,23 @@ nav {
   padding: 0.5rem;
   text-align:left;
   position: absolute;
-  top: 30px;
-  left: 0;
-  right:0;
+  top: 40px;
+  left:0;
   z-index:10000; 
   background-color: #202C36;
 }
 .container {
   display: none;
 }
-
-.container_listItem {
-  flex: 1;
-}
 .container_listItem div {
   cursor: pointer;
-  white-space: nowrap;
-  font-size: 0.4rem;
+  font-size: 1.4rem;
   font-weight: 500;
   font-family: "Poppins";
   color: #fff;
 }
 .container_listItem div:hover {
   color: #52DE97;
-}
-.button {
-  border: 1px solid #D4145A;
-  border-radius: 1.5rem;
-  padding: 3px 15px;
-  background-color: #fff;
-}
-.button .text_button {
-  color:#D4145A
-}
-.button:hover {
-  background-color: #D4145A;
-}
-.button:hover .text_button{
-  color: #fff;
 }
 
 </style>

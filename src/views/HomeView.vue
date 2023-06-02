@@ -1,5 +1,6 @@
 <script>
 import TopBar from '../components/TopBar.vue'
+import TopBarM from '../components/TopBarM.vue'
 import Footer from '../components/Footer.vue'
 import gadi from '../assets/gadi.jpeg'
 import omer from '../assets/omer.jpeg'
@@ -7,11 +8,11 @@ import omer from '../assets/omer.jpeg'
 export default {
   components: {
     TopBar,
+    TopBarM,
     Footer
   },
   data() {
     return {
-      bgcolor:'bg2',
       items: [{
         src: gadi,
         name: 'Gadi Meik',
@@ -25,23 +26,9 @@ export default {
       }]
     }
   },
-  created() {
-    window.addEventListener('scroll',this.handleScroll)
-  },
-  methods: {
-    handleScroll () {
-      let scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
-      if(scrollTop > window.innerHeight*0.1 + 53){
-        document.querySelector('.topBar').style.position='fixed';
-        document.querySelector('.topBar').style.top='0px';
-        this.bgcolor='bg1';
-      };
-      if(scrollTop <= window.innerHeight*0.1 + 53){
-        document.querySelector('.topBar').style.position='absolute';
-        document.querySelector('.topBar').style.top='10%';
-        this.bgcolor='bg2';
-      }
-    }
+  mounted() {
+    let video=document.querySelector('video');
+    video.play();
   }
 }
 </script>
@@ -49,9 +36,12 @@ export default {
 <template>
   <div class="homePage">
     <!-- 导航栏 -->
-    <section class="topBar">
-      <TopBar :bgcolor="bgcolor" />
+    <section class="web">
+      <TopBar />
     </section>
+    <section class="mobile">
+        <TopBarM />
+      </section>
     <!-- 第一部分 -->
     <section class="sec1">
       <div class="bg">
@@ -69,8 +59,6 @@ export default {
               <div class="text_button">Let's Talk</div>
             </div>
           </div>
-        </div>
-        <div class="right">
         </div>
       </div>
     </section>
@@ -119,7 +107,7 @@ export default {
           Data Scientist-in-a-Box<br>No AI/ML Expertise Needed
         </div>
         <div class="content2">
-          <video class="content2_video" controls autoplay muted>
+          <video class="content2_video" controls autoplay loop>
             <source src="../assets/IJbsmlQ4ws5wdwv4.mp4" type="video/mp4">
           </video>
         </div>
@@ -284,21 +272,23 @@ export default {
 
 <style scoped>
 /* 导航栏 */
-  .topBar {
-    position: absolute;
-    top: 10%;
-    right: 0;
-    left: 0;
-    z-index: 5;
+  @media (min-width: 960px) {
+    .mobile {
+      display: none;
+    }
+  }
+  @media (max-width: 960px) {
+    .web {
+      display: none;
+    }
   }
 /* 第一部分 */
   .sec1 {
-    /* height:500px; */
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(../assets/banner.jpg);
-    padding: 11% 9.3% 12% 14%;
+    padding: 11% 9.3% 12% 14%; 
     background-color: white;
     position:relative;
   }
@@ -316,7 +306,7 @@ export default {
     margin-right: auto;
     margin-left: auto;
     position: relative;
-    margin-top: 10px;
+    margin-top: 0px;
   }
   .container1 .left {
     width: 77.52%;
@@ -368,15 +358,11 @@ export default {
 .container1 .content3:hover .text_button{
   color: #D4145A;
 }
-.container1 .right {
-  width: 22.425%;
-}
 /* 第二部分 */
 .sec2{
   margin-top: 8%;
   margin-bottom: 0%;
   padding: 0% 6% 0% 12%;
-
 }
 .container2 {
   display: flex;
@@ -761,7 +747,7 @@ export default {
   padding-top: 0.5%;
 }
 .container8 .content2 {
-  display: inline-block;
+  /* display: inline-block; */
   font-family: "Poppins";
   font-size: 1.6vw;
   font-weight: 800;
@@ -781,5 +767,189 @@ export default {
 .footer {
   background-color: #202C36;
   padding: 0% 5% 2% 5%;
+}
+
+@media (max-width: 960px) {
+  /* 第一部分 */
+  .sec1 {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .container1 .left{
+    width: 100%;
+    padding: 0% 5% 10% 5%;
+  }
+  .container1 .content2 {
+    font-weight: 400;
+  }
+/* 第二部分 */
+.sec2{
+  margin-top: 18%;
+  margin-bottom: 0%;
+  padding: 0% 12% 0% 12%;
+}
+.container2 {
+  flex-direction: column;
+}
+.container2 .img_container {
+  left: -7vw;
+  top: -8vw;
+}
+.container2 img {
+  width: 18vw;
+}
+.container2 .content1 {
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+}
+.container2 .content1_1 {
+  font-size: 6vw;
+}
+.container2 .content1_2 {
+  padding: 10% 0% 15% 0%;
+  font-size: 4.5vw;
+}
+/* 第三部分 */
+.sec3 {
+  padding: 0% 5%;
+}
+.container3 .content1 {
+  font-size: 6vw;
+}
+/* 第四部分 */
+.sec4 {
+  padding: 0% 5%;
+}
+.container4 .content {
+  font-size: 6vw;
+}
+/* 第五部分 */
+.sec5 {
+  margin-top: 10%;
+  padding: 0% 5%;
+}
+.container5 {
+  padding: 0% 6% 0% 6%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+.container5 .container5_1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-width: 0px 0px 1px 0px;
+  border-style: solid;
+}
+.container5 .content {
+  width: 100%;
+  border-width: 0;
+  padding: 0% 0% 10% 0%;
+}
+.container5 .content1 {
+  flex-direction: column;
+  justify-content: center;
+}
+.container5 .content1_1 {
+  text-align: center;
+  margin: 20px 0;
+  width: 100%;
+}
+.container5 .content1_img {
+  width: 22vw;
+  height: 22vw;
+}
+.container5 .content1_2 {
+  font-size: 5.5vw;
+  text-align: center;
+  margin-bottom: 0.9rem;
+}
+.container5 .content1_3 {
+  text-align: center;
+  font-size: 5vw;
+}
+.container5 .content1_4 {
+  position: relative;
+  left: 0;
+  padding: 4.5vw 8vw;
+  margin-bottom: 20px;
+}
+.container5 .text_button {
+  font-size: 3.5vw;
+  text-align: center;
+}
+/* 第六部分 */
+.sec6 {
+  padding: 10% 5% 1% 5%;
+}
+.container6 .main_content {
+  padding: 0;
+}
+.container6 .content_name {
+  font-size: 5.5vw;
+}
+.container6 .content_intro {
+  font-size: 4vw;
+  line-height: 1.2em;
+}
+.container6 .content_detail {
+  font-size: 4.5vw;
+  line-height: 1.4em;
+  margin: 3% 0 0 0;
+}
+:deep(.el-carousel__container) {
+  height: 450px;
+}
+:deep(.el-carousel__arrow) {
+  background-color: transparent;
+  top: 100%;
+}
+/* 第七部分 */
+.sec7 {
+  padding: 15% 5% 0% 5%;
+}
+.container7 {
+  margin: 0% 0% -50% 0%;
+}
+.container7_1 {
+  margin-bottom: 20px;
+}
+.container7_1 .content {
+  font-size: 6.5vw;
+}
+.container7_2 .content1 {
+  margin-bottom: 5px;
+}
+.container7_2 .content2 {
+  font-size: 1.05vw;
+  line-height: 3.5em;
+  margin-bottom: 5px;
+  padding: 0 5%;
+}
+.container7_2 .content3 {
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+/* 第八部分 */
+.sec8 {
+  padding: 45% 5% 0% 5%;
+}
+.container8 .content1 {
+  color: #fff;
+  font-size: 8vw;
+  padding: 0 10%;
+}
+.container8 .content2 {
+  display: block;
+  font-size: 4.5vw;
+  font-weight: 900;
+}
+/* 页脚部分 */
+.footer {
+  background-color: #202C36;
+  padding: 0% 5% 2% 5%;
+}
 }
 </style>

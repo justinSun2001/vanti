@@ -169,6 +169,9 @@ u {
   display: flex;
   justify-content: flex-start;
 }
+.container2_1 {
+  width: 50%;
+}
 .container2 .text1 {
   color: #52de97;
   font-size: 0.73vw;
@@ -246,5 +249,71 @@ u {
 }
 .container3 img {
   height: 4vw;
+}
+@media (max-width: 960px) {
+li {
+  display: flex;
+  padding-bottom: 16px;
+} 
+a {
+  font-size: 3.8vw;
+}
+.main {
+  flex-wrap: wrap;
+}
+.container1 .content1 img {
+  width: 25vw;
+}
+.container1 .content2 {
+  font-size: 3.8vw;
+}
+.container1 .content3 .text {
+  font-size: 3.7vw;
+  line-height: 1em;
+}
+.container1 .content3 .text:hover {
+  color: #fff;
+  transition: color 0.3s;
+}
+.container2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+.container2 .text1 {
+  font-size: 4vw;
+}
+.container2 .text2 {
+  font-size: 3.8vw;
+}
+.container3 {
+  padding-left: 0;
+}
+.container3 .content1 {
+  color: #fff;
+  font-size: 4vw;
+  padding: 20px 0 10px 0;
+}
+.container3 .input {
+  font-size: 4vw;
+}
+.container3 .submit {
+  font-size: 4vw;
+}
+.container3 .content3 {
+  font-size: 2.5vw;
+  margin: 0.9rem 0;
+}
+.container3 .content4 {
+  padding-top: 5%;
+  justify-content: space-around;
+}
+.container3 .img1 {
+  margin-right: 0;
+}
+.container3 img {
+  height: 20vw;
+}
 }
 </style>
